@@ -1,0 +1,339 @@
+:root {
+  --bg-a: #ffe8d6;
+  --bg-b: #ffcad4;
+  --ink: #3a1f2d;
+  --card: rgba(255, 255, 255, 0.82);
+  --yes-a: #ff5d8f;
+  --yes-b: #d7265b;
+  --no-a: #7b6d8d;
+  --no-b: #5a4f67;
+  --ok: #169873;
+  --bad: #e0315b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(140deg, var(--bg-a), var(--bg-b));
+  overflow: hidden;
+}
+
+.glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(12px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.glow-a {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #ffafcc 0%, transparent 70%);
+  top: -110px;
+  left: -100px;
+}
+
+.glow-b {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, #ffd6a5 0%, transparent 72%);
+  bottom: -140px;
+  right: -130px;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: min(670px, 100%);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+  box-shadow: 0 22px 60px rgba(99, 37, 69, 0.2);
+  padding: clamp(20px, 4vw, 36px);
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+.tag {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #8b1e49;
+}
+
+h1 {
+  margin: 10px 0 12px;
+  font-family: "Lobster", cursive;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 1.1;
+  color: #7a163d;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 52ch;
+  font-size: clamp(1rem, 2.8vw, 1.14rem);
+}
+
+.button-zone {
+  position: relative;
+  margin-top: 24px;
+  min-height: 188px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--yes-a), var(--yes-b));
+}
+
+.btn-no {
+  background: linear-gradient(135deg, var(--no-a), var(--no-b));
+  transform-origin: center;
+}
+
+.btn-no.floating {
+  position: absolute;
+  z-index: 4;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #ff7aa9, #c02159);
+}
+
+.hint {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #90174b;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 10, 23, 0.48);
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  padding: 16px;
+}
+
+.modal-card {
+  width: min(700px, 100%);
+  background: #fff3f7;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 20px 50px rgba(80, 24, 52, 0.3);
+  padding: 18px;
+  text-align: center;
+}
+
+.modal-card h2,
+.success-card h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1;
+  font-family: "Lobster", cursive;
+  color: #9f174f;
+}
+
+.modal-sub {
+  margin: 10px auto 14px;
+  max-width: 60ch;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.hud-item {
+  background: #fff;
+  border: 1px solid #f4bfd2;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.hud-item span {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #8e2f56;
+}
+
+.hud-item strong {
+  font-size: 1.02rem;
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  height: min(54vw, 300px);
+  min-height: 230px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px dashed #f28bb0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 180, 200, 0.35), transparent 36%),
+    radial-gradient(circle at 85% 80%, rgba(255, 210, 180, 0.3), transparent 38%),
+    linear-gradient(180deg, #fff, #ffe7f0);
+}
+
+.target {
+  position: absolute;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  transition: transform 110ms ease, opacity 160ms ease;
+}
+
+.target:active {
+  transform: scale(0.9);
+}
+
+.target.good {
+  background: linear-gradient(160deg, #2cc99c, #158f6e);
+}
+
+.target.bad {
+  background: linear-gradient(160deg, #ff5f8a, #c12f58);
+}
+
+.target.hidden-target {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-message {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(92%, 500px);
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(242, 139, 176, 0.5);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.game-message.ok {
+  color: #0e7b5c;
+}
+
+.game-message.warn {
+  color: #9e1d48;
+}
+
+.game-message.fail {
+  color: #fff;
+  background: rgba(183, 33, 74, 0.95);
+  border-color: rgba(183, 33, 74, 0.95);
+}
+
+.actions {
+  margin-top: 12px;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.success-card {
+  width: min(520px, 100%);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 26px 16px;
+  text-align: center;
+  color: #fff;
+}
+
+.success-card p {
+  margin: 8px 0 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.success-card .small {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  top: -24px;
+  color: #fff;
+  font-weight: 800;
+  animation: rain linear forwards;
+}
+
+@keyframes rain {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.15;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .hud {
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+  }
+
+  .button-zone {
+    min-height: 220px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 11px 18px;
+  }
+}
