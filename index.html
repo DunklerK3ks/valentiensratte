@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentinstag Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Lobster&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <main class="card" id="mainCard">
+    <p class="tag">Valentinstag 2026</p>
+    <h1>Willst du mein Date sein?</h1>
+    <p class="subtitle" id="subtitle">Wenn du auf <strong>Ja</strong> drueckst, musst du erst die kleine Challenge schaffen.</p>
+
+    <div class="button-zone" id="buttonZone">
+      <button class="btn btn-yes" id="yesBtn">Ja, ich will</button>
+      <button class="btn btn-no" id="noBtn">Nein</button>
+    </div>
+
+    <p class="hint" id="hint">Kleiner Tipp: "Nein" wird hier nicht leichter.</p>
+  </main>
+
+  <section class="overlay hidden" id="challengeModal" aria-live="polite">
+    <div class="modal-card">
+      <h2>Heart Dash</h2>
+      <p class="modal-sub" id="challengeIntro">Triff das <strong>+1 Ziel</strong>, meide das <strong>-1 Ziel</strong>. Schnellere Treffer geben Bonus.</p>
+
+      <div class="hud">
+        <div class="hud-item"><span>Treffer</span><strong id="scoreValue">0/12</strong></div>
+        <div class="hud-item"><span>Level</span><strong id="levelValue">1</strong></div>
+        <div class="hud-item"><span>Zeit</span><strong id="timeValue">22s</strong></div>
+        <div class="hud-item"><span>Leben</span><strong id="livesValue">3</strong></div>
+      </div>
+
+      <div class="game-area" id="gameArea">
+        <button id="goodTarget" class="target good" aria-label="Gutes Ziel">+1</button>
+        <button id="badTarget" class="target bad" aria-label="Falsches Ziel">-1</button>
+        <p class="game-message" id="gameMessage">Bereit? Los geht es jetzt.</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary hidden" id="restartBtn">Nochmal versuchen</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlay success hidden" id="successScreen" aria-live="polite">
+    <div class="success-card">
+      <h2>Yes!</h2>
+      <p>Challenge geschafft. Dann ist es ein Date.</p>
+      <p class="small">Ich freu mich auf unseren Valentinstag.</p>
+      <div class="rain" id="heartRain" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
